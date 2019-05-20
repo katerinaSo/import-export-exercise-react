@@ -1,12 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { foods } from "./food";
+import { choice, remove } from "./helper";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class App extends Component {
+  render() {
+    const myChoice = choice(foods);
+    return (
+      <div>
+        <p>I would like: {myChoice}, please.</p>
+        <p>Here you go : {myChoice}.</p>
+        <p>Can I have one more?</p>
+        <p>Sorry, we only have these left: {remove(foods, myChoice)}</p>
+      </div>
+    );
+  }
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+export default App;
+
+ReactDOM.render(<App />, document.querySelector("#root"));
